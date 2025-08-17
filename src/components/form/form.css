@@ -1,65 +1,207 @@
 .card {
-  width: 500px;
-  margin: 40px;
-  border: 4px solid #222;
-	align-items: center;
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(214, 96, 96, 0.1);
-	background-color: #f9f9f9;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-
-}
-
-.number {
+  width: 96vw;
+  max-width: 700px;
+  min-width: 320px;
+  margin: 0 auto;
+  border: none;
+  align-items: center;
+  padding: 36px 32px;
+  border-radius: 28px;
+  box-shadow: 0 12px 48px rgba(99, 102, 241, 0.12), 0 2px 24px #e0e7ff;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 20px;
-	padding: 10px;
-	background-color: #f0f0f0;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	transition: background-color 0.3s ease;
-	cursor: pointer;
-	font-size: 20px;
-	color: #333;
-	font-weight: bold;
+  justify-content: flex-start;
+  position: relative;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  pointer-events: none;
+  box-shadow: 0 0 0 8px #e0e7ff inset;
+  opacity: 0.18;
 }
 
 .label {
+  font-size: 22px;
+  margin-bottom: 18px;
+  color: #6366f1;
+  font-weight: bold;
+  text-align: left;
+  font-family: "Segoe UI", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: color 0.3s;
+  cursor: pointer;
+  display: block;
+}
+
+.player-names-title {
+  font-size: 26px;
+  color: #06b6d4;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #e0e7ff;
+}
+
+.player-names-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 48px; /* Increased gap between fields */
+  margin-bottom: 18px;
+  padding-right: 40px;
+}
+
+.player-name-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 20px 0; /* Increased vertical padding for extra separation */
+  background: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #e0e7ff22;
+}
+
+.player-name-label {
+  font-size: 18px;
+  margin-bottom: 8px;
+  word-break: break-word;
+  color: #6366f1;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+}
+
+.number {
+  width: 100%;
+  padding: 14px 18px;
+  background: linear-gradient(90deg, #e0e7ff 60%, #f8fafc 100%);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(99, 102, 241, 0.08);
   font-size: 20px;
-  margin-bottom: 10px;
-  padding: auto;
-	color: #555;
-	font-weight: bold;
-	text-align: center;
-	font-family: 'Arial', sans-serif;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	transition: color 0.3s ease;
-	cursor: pointer;
+  color: #6366f1;
+  font-weight: bold;
+  border: 2px solid #e0e7ff;
+  outline: none;
+  margin-bottom: 0;
+  transition: background 0.3s, box-shadow 0.3s, border 0.2s;
+}
+
+.number:focus {
+  background: #f1f5f9;
+  box-shadow: 0 0 0 4px #6366f1;
+  border-color: #6366f1;
+}
+
+.duplicate-name {
+  border: 2px solid #b91c1c !important;
+  background: linear-gradient(90deg, #fee2e2 60%, #fff6f6 100%) !important;
+  box-shadow: 0 0 0 3px #fecaca;
+  animation: shake 0.3s;
+}
+
+.valid-name {
+  border: 2px solid #22c55e !important;
+  background: linear-gradient(90deg, #e6ffe6 60%, #f6fff6 100%) !important;
+  box-shadow: 0 0 0 3px #bbf7d0;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.error-message {
+  background: linear-gradient(90deg, #fee2e2 60%, #fff6f6 100%);
+  color: #b91c1c;
+  border: 2px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 18px;
+  margin-bottom: 18px;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px #fecaca44;
+  text-align: center;
 }
 
 .button {
-  display: flex;
-  justify-content: space-between;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding: 10px;
-	background-color: #f0f0f0;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	transition: background-color 0.3s ease;
-	cursor: pointer;
-	font-size: 20px;
-	color: #333;
-	font-weight: bold;
-	text-align: center;
-	font-family: 'Arial', sans-serif;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+  display: block;
+  width: 100%;
+  margin: 32px 0 0 0;
+  padding: 16px 0;
+  background: linear-gradient(90deg, #6366f1 80%, #06b6d4 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: none;
+}
+
+.button:hover {
+  background: linear-gradient(90deg, #06b6d4 80%, #6366f1 100%);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.22);
+  transform: translateY(-2px) scale(1.04);
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 98vw;
+    padding: 18px 6px;
+    border-radius: 14px;
+  }
+  .player-names-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .player-names-grid {
+    grid-template-columns: 1fr;
+    gap: 10px 0;
+    padding-right: 2px;
+  }
+  .player-name-label {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .number {
+    font-size: 16px;
+    padding: 8px 6px;
+    border-radius: 8px;
+  }
+  .button {
+    font-size: 16px;
+    padding: 10px 0;
+    border-radius: 8px;
+  }
 }
