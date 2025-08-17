@@ -11,7 +11,10 @@ export default function TableList({
     ? playerNames
     : Array.from({ length: numberOfPlayers }, (_, i) => `Player ${i + 1}`);
   const [scores, setScores] = React.useState([Array(numberOfPlayers).fill(0)]);
-  const [finishOrder, setFinishOrder] = React.useState([]); // Track finish order
+  // Removed unused finishOrder state
+  const [finishRounds, setFinishRounds] = React.useState(
+    Array(numberOfPlayers).fill(null)
+  ); // Track the round in which each player finished
 
   // Add a new round when ENTER is clicked
   const handleEnter = () => {
@@ -23,17 +26,18 @@ export default function TableList({
     const newScores = scores.map((arr) => [...arr]);
     newScores[roundIdx][playerIdx] = Number(value);
 
-    // Calculate new totals
     const newTotals = newScores.reduce((acc, round) => {
       return acc.map((sum, idx) => sum + (round[idx] || 0));
     }, Array(numberOfPlayers).fill(0));
 
-    // If player reaches the end and is not already in finishOrder, add them
+    // If player reaches the end and hasn't finished, record their finish round
     if (
       newTotals[playerIdx] >= gameEndsAfterOrGameEnds &&
-      !finishOrder.includes(playerIdx)
+      finishRounds[playerIdx] === null
     ) {
-      setFinishOrder((prevOrder) => [...prevOrder, playerIdx]);
+      const updatedFinishRounds = [...finishRounds];
+      updatedFinishRounds[playerIdx] = roundIdx;
+      setFinishRounds(updatedFinishRounds);
     }
 
     setScores(newScores);
@@ -47,10 +51,30 @@ export default function TableList({
   // Calculate ranks: finished players get fixed ranks, unfinished players ranked by score
   const ranks = Array(numberOfPlayers).fill(null);
 
-  // Assign fixed ranks to finished players in the order they finished
-  finishOrder.forEach((playerIdx, orderIdx) => {
-    ranks[playerIdx] = numberOfPlayers - finishOrder.length + orderIdx + 1;
-  });
+  // Find all finished players and their finish rounds
+  const finishedPlayers = finishRounds
+    .map((round, idx) => ({ idx, round }))
+    .filter((p) => p.round !== null);
+
+  // Sort by finish round (ascending)
+  finishedPlayers.sort((a, b) => a.round - b.round);
+
+  // Assign ranks: players finishing in the same round get the same last available rank
+  let finishedRanks = {};
+  let ranksAssigned = 0;
+  for (let i = 0; i < finishedPlayers.length; ) {
+    const thisRound = finishedPlayers[i].round;
+    const sameRoundPlayers = finishedPlayers.filter(
+      (p) => p.round === thisRound
+    );
+    const rankForThisRound =
+      numberOfPlayers - ranksAssigned - sameRoundPlayers.length + 1;
+    sameRoundPlayers.forEach((p) => {
+      finishedRanks[p.idx] = rankForThisRound;
+    });
+    i += sameRoundPlayers.length;
+    ranksAssigned += sameRoundPlayers.length;
+  }
 
   // Assign ranks to unfinished players using standard competition ranking
   let unfinished = ranks
@@ -58,17 +82,32 @@ export default function TableList({
     .filter((player) => player.rank === null);
   // Standard competition ranking ("122" ranking)
   unfinished.sort((a, b) => a.score - b.score);
-  let currentRank = 1;
+  let currentRankUnfinished = 1;
   for (let i = 0; i < unfinished.length; ) {
     const score = unfinished[i].score;
     const sameScoreCount = unfinished.filter((p) => p.score === score).length;
     for (let j = 0; j < unfinished.length; j++) {
       if (unfinished[j].score === score && ranks[unfinished[j].idx] === null) {
-        ranks[unfinished[j].idx] = currentRank;
+        ranks[unfinished[j].idx] = currentRankUnfinished;
       }
     }
     i += sameScoreCount;
-    currentRank += 1;
+    currentRankUnfinished += 1;
+  }
+
+  // Check if game is over (all but one player finished)
+  const finishedCount = Object.keys(finishedRanks).length;
+  const gameOver = finishedCount === numberOfPlayers - 1;
+
+  // If game is over, assign rank 1 to the last unfinished player
+  if (gameOver) {
+    const unfinishedIdx = Array.from(
+      { length: numberOfPlayers },
+      (_, idx) => idx
+    ).find((idx) => finishedRanks[idx] === undefined);
+    if (unfinishedIdx !== undefined) {
+      finishedRanks[unfinishedIdx] = 1;
+    }
   }
 
   return (
@@ -100,35 +139,32 @@ export default function TableList({
                   <span role="img" aria-label="rank">
                     🏆
                   </span>{" "}
-                  Current Rank
+                  Rank
                 </th>
-                {ranks.map((rank, idx) => {
-                  const allZero = scores.every((round) =>
-                    round.every((score) => score === 0)
-                  );
-                  if (allZero) {
+                {playerHeaders.map((_, idx) => {
+                  if (totals[idx] < gameEndsAfterOrGameEnds && !gameOver) {
                     return (
                       <td className="table-list-rank-cell" key={idx}>
                         <span className="rank-badge"></span>
                       </td>
                     );
                   }
-                  const minRank = Math.min(...ranks);
-                  const maxRank = Math.max(...ranks);
+                  const displayRank = finishedRanks[idx];
+                  const lastRank = Math.min(...Object.values(finishedRanks));
                   let badgeClass = "rank-badge";
                   let icon = "";
-                  if (rank === minRank) {
-                    badgeClass += " rank-top";
+                  if (displayRank === 1) {
+                    badgeClass += " rank-green";
                     icon = "🥇";
                   }
-                  if (rank === maxRank) {
-                    badgeClass += " rank-danger";
-                    icon = "";
+                  if (displayRank === lastRank && displayRank !== 1) {
+                    badgeClass += " rank-red";
+                    icon = "🏅";
                   }
                   return (
                     <td className="table-list-rank-cell" key={idx}>
                       <span className={badgeClass}>
-                        {icon} {rank}
+                        {icon} {displayRank}
                       </span>
                     </td>
                   );
@@ -153,8 +189,9 @@ export default function TableList({
                     roundIdx + 1
                   }`}</th>
                   {playerHeaders.map((_, playerIdx) => {
+                    // Disable all fields if game is over
                     const isDisabled =
-                      totals[playerIdx] >= gameEndsAfterOrGameEnds;
+                      gameOver || totals[playerIdx] >= gameEndsAfterOrGameEnds;
                     return (
                       <td className="table-list-round-cell" key={playerIdx}>
                         <input
