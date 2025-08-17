@@ -148,6 +148,24 @@
   transform: scale(1.08);
 }
 
+.rank-green {
+  background: linear-gradient(90deg, #e6ffe6 0%, #bbf7d0 100%);
+  color: #059669 !important;
+  border: 2px solid #22c55e !important;
+  box-shadow: 0 0 16px #22c55e33;
+  font-size: 26px;
+  transform: scale(1.08);
+}
+
+.rank-red {
+  background: linear-gradient(90deg, #fee2e2 0%, #fecaca 100%);
+  color: #b91c1c !important;
+  border: 2px solid #b91c1c !important;
+  box-shadow: 0 0 16px #b91c1c33;
+  font-size: 26px;
+  transform: scale(1.08);
+}
+
 /* Total row with badge */
 .table-list-total-row th,
 .table-list-total-row td {
