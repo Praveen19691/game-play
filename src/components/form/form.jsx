@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "./form.css";
-import TableList from "../table/tableList";
+import PlayerSetupForm from "./playerSetupForm/PlayerSetupForm.jsx";
+import PlayerNamesForm from "./playerNamesForm/PlayerNamesForm.jsx";
+import GameTable from "./gameTable/GameTable.jsx";
 
 function FormData() {
   const [form, setForm] = useState({
@@ -82,106 +83,27 @@ function FormData() {
   return (
     <>
       {!submittedForm && (
-        <div className="card">
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label className="label" htmlFor="numberOfPlayers">
-                Number of players:
-              </label>
-              <input
-                type="number"
-                className="number"
-                id="numberOfPlayers"
-                name="numberOfPlayers"
-                value={form.numberOfPlayers}
-                onChange={handleChange}
-                min={2}
-                max={8}
-              />
-              {playerCountError && (
-                <div className="error-message">{playerCountError}</div>
-              )}
-            </div>
-            <div>
-              <label className="label" htmlFor="gameEndsAfterOrGameEnds">
-                Game ends after:
-              </label>
-              <input
-                type="number"
-                className="number"
-                id="gameEndsAfterOrGameEnds"
-                name="gameEndsAfterOrGameEnds"
-                value={form.gameEndsAfterOrGameEnds}
-                onChange={handleChange}
-                min={1}
-              />
-            </div>
-            <div>
-              <label className="label" htmlFor="maxPointCanEnter">
-                Maximum points in a round:
-              </label>
-              <input
-                type="number"
-                className="number"
-                id="maxPointCanEnter"
-                name="maxPointCanEnter"
-                value={form.maxPointCanEnter}
-                onChange={handleChange}
-                min={1}
-              />
-            </div>
-            <button type="submit" className="button">
-              Submit
-            </button>
-          </form>
-        </div>
+        <PlayerSetupForm
+          form={form}
+          playerCountError={playerCountError}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
       )}
 
       {submittedForm && !namesSubmitted && (
-        <div className="card">
-          <form onSubmit={handleNamesSubmit}>
-            <div className="player-names-title">Enter Player Names</div>
-            <div className="player-names-grid">
-              {playerNames.map((name, idx) => (
-                <div className="player-name-grid-item" key={idx}>
-                  <label
-                    className="label player-name-label"
-                    htmlFor={`playerName${idx}`}
-                  >
-                    Player {idx + 1} Name:
-                  </label>
-                  <input
-                    id={`playerName${idx}`}
-                    type="text"
-                    className={`number${
-                      duplicateIndices.includes(idx)
-                        ? " duplicate-name"
-                        : validIndices.includes(idx)
-                        ? " valid-name"
-                        : ""
-                    }`}
-                    value={name}
-                    onChange={(e) => handleNameChange(idx, e.target.value)}
-                    required
-                  />
-                </div>
-              ))}
-            </div>
-            {nameError && <div className="error-message">{nameError}</div>}
-            <button type="submit" className="button">
-              Start Game
-            </button>
-          </form>
-        </div>
+        <PlayerNamesForm
+          playerNames={playerNames}
+          nameError={nameError}
+          handleNameChange={handleNameChange}
+          handleNamesSubmit={handleNamesSubmit}
+          duplicateIndices={duplicateIndices}
+          validIndices={validIndices}
+        />
       )}
 
       {submittedForm && namesSubmitted && (
-        <TableList
-          numberOfPlayers={submittedForm.numberOfPlayers}
-          gameEndsAfterOrGameEnds={submittedForm.gameEndsAfterOrGameEnds}
-          maxPointCanEnter={submittedForm.maxPointCanEnter}
-          playerNames={playerNames}
-        />
+        <GameTable submittedForm={submittedForm} playerNames={playerNames} />
       )}
     </>
   );
