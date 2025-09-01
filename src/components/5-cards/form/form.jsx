@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PlayerSetupForm from "./playerSetupForm/PlayerSetupForm.jsx";
 import PlayerNamesForm from "./playerNamesForm/PlayerNamesForm.jsx";
 import GameTable from "./gameTable/GameTable.jsx";
@@ -14,6 +15,7 @@ function FormData() {
   const [namesSubmitted, setNamesSubmitted] = useState(false);
   const [nameError, setNameError] = useState("");
   const [playerCountError, setPlayerCountError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +33,7 @@ function FormData() {
     e.preventDefault();
     setSubmittedForm(form);
     setPlayerNames(Array(form.numberOfPlayers).fill(""));
+    navigate("/5cards/player-names");
   };
 
   const handleNameChange = (idx, value) => {

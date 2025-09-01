@@ -1,0 +1,103 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  padding-top: 64px;
+  padding-bottom: 64px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.home-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #6366f1;
+  margin-bottom: 48px;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 12px #e0e7ff;
+}
+
+.game-tiles {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.game-tile {
+  background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
+  border-radius: 32px;
+  box-shadow: 0 8px 32px #6366f144, 0 2px 24px #e0e7ff;
+  padding: 48px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s, border 0.2s, background 0.2s;
+  border: 3px solid #6366f1;
+  margin-bottom: 24px;
+}
+
+.game-tile:hover,
+.game-tile:focus {
+  box-shadow: 0 16px 48px #6366f144, 0 4px 32px #06b6d4;
+  transform: translateY(-8px) scale(1.06);
+  border-color: #06b6d4;
+  background: linear-gradient(120deg, #6366f1 0%, #e0e7ff 100%);
+}
+
+.game-tile img {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 18px;
+}
+
+.game-tile-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6366f1;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 8px #e0e7ff;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 12px 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  transition: background 0.2s, color 0.2s;
+}
+
+.game-tile:hover .game-tile-title,
+.game-tile:focus .game-tile-title {
+  background: rgba(99, 102, 241, 0.1);
+  color: #06b6d4;
+}
+
+@media (max-width: 600px) {
+  .home-title {
+    font-size: 2rem;
+    margin-bottom: 24px;
+  }
+  .game-tile {
+    padding: 24px 12px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+  .game-tile-title {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+  }
+  .game-tiles {
+    gap: 16px;
+  }
+  .home-container {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
