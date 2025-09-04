@@ -2,8 +2,8 @@ import React from "react";
 import TableHeader from "../tableHeader/TableHeader";
 import TableRankRow from "../tableRankRow/TableRankRow";
 import TableTotalRow from "../tableTotalRow/TableTotalRow";
-import "../tableRoundRows/tableRoundRows.css";
-import "./tableContainer.css";
+import "../tableRoundRows/tableRoundRows.scss";
+import "./tableContainer.scss";
 import { calculateFinishRounds, calculateRanks } from "../gameLogic";
 
 export default function TableList({

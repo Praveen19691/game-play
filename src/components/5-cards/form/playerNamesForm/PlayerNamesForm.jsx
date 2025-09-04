@@ -1,4 +1,4 @@
-import "./playerNamesForm.css";
+import "./playerNamesForm.scss";
 
 export default function PlayerNamesForm({
   playerNames,
@@ -10,8 +10,8 @@ export default function PlayerNamesForm({
 }) {
   return (
     <div className="card">
+      <div className="player-names-title">Enter Player Names</div>
       <form onSubmit={handleNamesSubmit}>
-        <div className="player-names-title">Enter Player Names</div>
         <div className="player-names-grid">
           {playerNames.map((name, idx) => (
             <div className="player-name-grid-item" key={idx}>

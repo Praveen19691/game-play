@@ -1,0 +1,148 @@
+$happy-bg: #f6fff6;
+$happy-accent: #e0f7fa;
+$happy-green: #22c55e;
+$happy-green-light: #bbf7d0;
+$happy-blue: #60a5fa;
+$happy-border: #b2dfdb;
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(135deg, $happy-bg 0%, $happy-accent 100%);
+  padding: 64px 24px 64px 24px;
+}
+
+.card.home-card {
+  width: 96vw;
+  max-width: 700px;
+  min-width: 320px;
+  margin: 0 auto;
+  border: none;
+  align-items: center;
+  padding: 36px 32px;
+  border-radius: 28px;
+  box-shadow: 0 12px 48px rgba(34, 197, 94, 0.12), 0 2px 24px $happy-green-light;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: $happy-green;
+  margin-bottom: 32px;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px $happy-green-light;
+  background: linear-gradient(90deg, $happy-accent 0%, $happy-green-light 100%);
+  border-radius: 18px;
+  padding: 18px 36px;
+  box-shadow: 0 4px 24px $happy-green-light;
+}
+
+.game-tiles {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.game-tile {
+  background: linear-gradient(
+    90deg,
+    $happy-green-light 60%,
+    $happy-accent 100%
+  );
+  border-radius: 24px;
+  box-shadow: 0 8px 32px $happy-green-light, 0 2px 24px $happy-accent;
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s, border 0.2s, background 0.2s;
+  border: 2px solid $happy-green;
+  margin-bottom: 24px;
+  position: relative;
+  min-width: 180px;
+  min-height: 80px;
+}
+
+.game-tile:hover,
+.game-tile:focus {
+  box-shadow: 0 16px 48px $happy-green-light, 0 4px 32px $happy-blue;
+  transform: translateY(-8px) scale(1.06);
+  border-color: $happy-blue;
+  background: linear-gradient(90deg, $happy-green 80%, $happy-blue 100%);
+}
+
+.game-tile img {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 18px;
+}
+
+.game-tile-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $happy-green;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 8px $happy-green-light;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 12px $happy-green-light;
+}
+
+.game-tile:hover .game-tile-title,
+.game-tile:focus .game-tile-title {
+  background: rgba(34, 197, 94, 0.12);
+  color: $happy-blue;
+}
+
+@media (max-width: 900px) {
+  .home-title {
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+  .card.home-card {
+    padding: 18px 6px;
+    border-radius: 14px;
+  }
+  .game-tile {
+    padding: 18px 8px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    min-width: 100px;
+    min-height: 50px;
+  }
+  .game-tile-title {
+    font-size: 1rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+  .game-tiles {
+    gap: 12px;
+  }
+  .home-container {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}

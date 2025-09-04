@@ -1,4 +1,4 @@
-import "./tableTotalRow.css"; 
+import "./tableTotalRow.scss"; 
 
 export default function TableTotalRow({ totals }) {
   return (
