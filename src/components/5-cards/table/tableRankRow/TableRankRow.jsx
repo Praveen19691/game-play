@@ -1,4 +1,4 @@
-import "./tableRankRow.css";
+import "./tableRankRow.scss";
 
 export default function TableRankRow({ ranks, finishedRanks, gameOver }) {
   const lastRank = Math.min(...Object.values(finishedRanks));

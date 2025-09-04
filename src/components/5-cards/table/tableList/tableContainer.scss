@@ -7,18 +7,18 @@
   min-height: 100vh;
   justify-content: flex-start;
   overflow: visible;
-  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  background: linear-gradient(135deg, #2d2d32 0%, #bbf7d0 100%);
 }
 
 .table-list-wrapper {
   width: 100vw;
   max-width: 100vw;
   min-width: 0;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(34, 197, 94, 0.08); // light green tint
   border-radius: 32px;
-  box-shadow: 0 12px 48px rgba(99, 102, 241, 0.12), 0 2px 24px #e0e7ff;
+  box-shadow: 0 12px 48px rgba(34, 197, 94, 0.12), 0 2px 24px #bbf7d0;
   padding: 0 0 32px 0;
-  border: 2px solid #e0e7ff;
+  border: 2px solid #bbf7d0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -30,22 +30,22 @@
 .table-list-btn {
   margin-bottom: 32px;
   padding: 16px 40px;
-  background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
-  color: #fff;
+  background: linear-gradient(90deg, #22c55e 0%, #bbf7d0 100%);
+  color: #222;
   border: none;
   border-radius: 16px;
   font-size: 26px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 6px 24px #6366f144;
+  box-shadow: 0 6px 24px #bbf7d044;
   transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
   letter-spacing: 2px;
   margin-top: 12px;
 }
 
 .table-list-btn:hover {
-  background: linear-gradient(90deg, #06b6d4 0%, #6366f1 100%);
-  box-shadow: 0 12px 32px #6366f144;
+  background: linear-gradient(90deg, #bbf7d0 0%, #22c55e 100%);
+  box-shadow: 0 12px 32px #bbf7d044;
   transform: translateY(-2px) scale(1.06);
 }
 
@@ -64,20 +64,20 @@
 /* Custom scrollbar */
 .table-list-scroller::-webkit-scrollbar {
   width: 16px;
-  background: #e0e7ff;
+  background: #bbf7d0;
   border-radius: 8px;
 }
 .table-list-scroller::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, #22c55e 0%, #bbf7d0 100%);
   border-radius: 8px;
   border: 3px solid #f1f5f9;
-  box-shadow: 0 0 8px #6366f1;
+  box-shadow: 0 0 8px #22c55e;
 }
 .table-list-scroller::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #06b6d4 0%, #6366f1 100%);
-  border: 3px solid #e0e7ff;
+  background: linear-gradient(135deg, #bbf7d0 0%, #22c55e 100%);
+  border: 3px solid #bbf7d0;
 }
 .table-list-scroller {
   scrollbar-width: thick;
-  scrollbar-color: #6366f1 #e0e7ff;
+  scrollbar-color: #22c55e #bbf7d0;
 }

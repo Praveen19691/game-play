@@ -1,5 +1,5 @@
 import React from "react";
-import "./playerSetupForm.css";
+import "./playerSetupForm.scss";
 
 export default function PlayerSetupForm({
   form,
@@ -10,7 +10,7 @@ export default function PlayerSetupForm({
   return (
     <div className="card">
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-field">
           <label className="label" htmlFor="numberOfPlayers">
             Number of players:
           </label>
@@ -28,7 +28,7 @@ export default function PlayerSetupForm({
             <div className="error-message">{playerCountError}</div>
           )}
         </div>
-        <div>
+        <div className="form-field">
           <label className="label" htmlFor="gameEndsAfterOrGameEnds">
             Game ends after:
           </label>
@@ -42,7 +42,7 @@ export default function PlayerSetupForm({
             min={1}
           />
         </div>
-        <div>
+        <div className="form-field">
           <label className="label" htmlFor="maxPointCanEnter">
             Maximum points in a round:
           </label>

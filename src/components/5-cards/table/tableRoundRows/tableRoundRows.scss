@@ -1,0 +1,88 @@
+$table-bg: #f6fff6;
+$table-accent: #e0f7fa;
+$table-active: #d1f7c4;
+$table-hover: #b2ebf2;
+$table-border: #b2dfdb;
+$table-text: #3b7a57;
+$table-input-bg: #e0f7fa;
+$table-input-focus: #b2dfdb;
+$table-input-disabled: #f6fff6;
+
+.table-list-round-row th,
+.table-list-round-row td {
+  background: linear-gradient(90deg, $table-bg 0%, $table-accent 100%);
+  border-bottom: 1px solid $table-border;
+  font-size: 20px;
+  color: $table-text;
+  font-weight: 500;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+  padding: 18px 22px;
+  border-radius: 16px;
+}
+
+.table-list-round-row.active-round th,
+.table-list-round-row.active-round td {
+  background: linear-gradient(90deg, $table-active 0%, $table-accent 100%);
+  box-shadow: 0 2px 8px #b2dfdb44;
+  font-weight: bold;
+  border-bottom: 2px solid $table-input-focus;
+  color: #388e3c;
+}
+
+.table-list-round-row:hover th,
+.table-list-round-row:hover td {
+  background: linear-gradient(90deg, $table-hover 0%, $table-active 100%);
+  box-shadow: 0 2px 12px #b2dfdb44;
+  color: #388e3c;
+}
+
+.table-list-round-cell {
+  text-align: center;
+  padding: 18px 22px;
+}
+
+.table-list-input,
+.table-list-input-disabled {
+  width: 60px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 2px solid $table-border;
+  font-size: 18px;
+  text-align: center;
+  background: $table-input-bg;
+  color: $table-text;
+  box-shadow: 0 2px 8px #b2dfdb44;
+  transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+  -webkit-appearance: none;
+  appearance: textfield;
+}
+
+.table-list-input:focus {
+  border-color: $table-input-focus;
+  box-shadow: 0 0 0 3px $table-hover;
+  background: $table-hover;
+  color: #388e3c;
+}
+
+.table-list-input-disabled {
+  background: $table-input-disabled;
+  color: #bdbdbd;
+  border: 2px solid $table-border;
+  box-shadow: none;
+}
+
+@media (max-width: 900px) {
+  .table-list-round-row th,
+  .table-list-round-row td {
+    font-size: 16px;
+    padding: 10px 6px;
+    border-radius: 8px;
+  }
+  .table-list-input,
+  .table-list-input-disabled {
+    width: 40px;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+}

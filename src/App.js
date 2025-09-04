@@ -9,7 +9,7 @@ import FormData from "./components/5-cards/form/form.jsx";
 import HomePage from "./components/HomePage.jsx";
 import SkullKingForm from "./components/skullking/SkullkingForm.jsx";
 import GamePage from "./components/skullking/GamePlay.jsx";
-import "./app.css";
+import "./app.scss";
 
 // Wrapper for HomePage to use navigation
 function HomePageWithNav() {
@@ -29,7 +29,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePageWithNav />} />
-          <Route path="/5cards-" element={<FormData />} />
+          <Route path="/5cards" element={<FormData />} />
           <Route path="/5cards/player-names" element={<FormData />} />
           <Route path="/skullking" element={<SkullKingForm />} />
           <Route path="/game" element={<GamePage />} />

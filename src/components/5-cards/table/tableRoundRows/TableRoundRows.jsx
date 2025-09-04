@@ -1,4 +1,4 @@
-import "./tableRoundRows.css";
+import "./tableRoundRows.scss";
 
 export default function TableRoundRows({
   scores,

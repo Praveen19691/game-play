@@ -1,4 +1,4 @@
-import "./tableHeader.css";
+import "./tableHeader.scss";
 
 export default function TableHeader({ playerHeaders }) {
   return (

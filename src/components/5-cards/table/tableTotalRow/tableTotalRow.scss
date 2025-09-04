@@ -1,0 +1,67 @@
+$table-bg: #f6fff6;
+$table-accent: #e0f7fa;
+$table-border: #b2dfdb;
+$table-green: #22c55e;
+$table-green-dark: #059669;
+$table-green-light: #e6ffe6;
+$table-blue-light: #e0f7fa;
+
+.table-list-total-row th,
+.table-list-total-row td {
+  background: linear-gradient(90deg, $table-bg 0%, $table-accent 100%);
+  font-weight: bold;
+  color: $table-green;
+  border-bottom: 1.5px solid $table-border;
+  font-size: 20px;
+  box-shadow: 0 2px 8px #b2dfdb44;
+  border-radius: 16px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.table-list-total-label {
+  font-size: 22px;
+  color: $table-green-dark;
+  font-weight: bold;
+  background: $table-blue-light;
+  border-radius: 0 0 0 24px;
+  text-align: center;
+  padding: 18px 0;
+  letter-spacing: 1px;
+  border-right: 1px solid $table-border;
+  box-shadow: 0 2px 8px #b2dfdb44;
+}
+
+.table-list-total-cell {
+  text-align: center;
+}
+
+.total-badge {
+  display: inline-block;
+  min-width: 48px;
+  padding: 10px 0;
+  border-radius: 24px;
+  font-size: 20px;
+  font-weight: bold;
+  background: linear-gradient(
+    90deg,
+    $table-green-light 0%,
+    $table-blue-light 100%
+  );
+  color: $table-green-dark;
+  border: 2px solid $table-green;
+  box-shadow: 0 2px 8px #22c55e22;
+  margin: 0 auto;
+  text-align: center;
+  letter-spacing: 1px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.total-badge:hover {
+  background: linear-gradient(
+    90deg,
+    $table-blue-light 0%,
+    $table-green-light 100%
+  );
+  color: $table-green;
+  box-shadow: 0 4px 16px #22c55e33;
+}

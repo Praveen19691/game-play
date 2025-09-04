@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./SkullkingForm.scss";
 
 function PlayerForm() {
-  const [playerCount, setPlayerCount] = useState(2);
+  const [playerCount, setPlayerCount] = useState(3);
   const [roundCount, setRoundCount] = useState(10);
   const navigate = useNavigate();
 
@@ -16,10 +16,10 @@ function PlayerForm() {
     <form onSubmit={handleSubmit}>
       <h1 className="page-heading">Skull King Setup</h1>
       <label>
-        Player Count (2-8):
+        Player Count (3-8):
         <input
           type="number"
-          min={2}
+          min={3}
           max={8}
           value={playerCount}
           onChange={(e) => setPlayerCount(Number(e.target.value))}
